@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Unbreakable Spirit — A Civil Rights Moviement for the Soul</title>
+<meta name="description" content="The broadcast medium of the Moviement. A five-season transmedium docuseries — not about a movement, but the movement, documented as it's being lived." />
+<meta property="og:title" content="Unbreakable Spirit" />
+<meta property="og:description" content="The broadcast medium of A Civil Rights Moviement for the Soul. Reality television as cultural intervention." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Moviement DNA — ecosystem chrome */
+    --bg: #0E0B08;
+    --bg-deep: #050403;
+    --ink: #EDE5D6;
+    --ink-soft: #C7BCA8;
+    --gold: #D4A647;
+    --gold-deep: #A8842F;
+    --ember: #C7421F;
+    --rule: rgba(212, 166, 71, 0.18);
+
+    /* Broadcast skin — intentional accent (not base) */
+    --signal: #B080E8;       /* lavender from the original Unbreakable banner, dimmed for dark bg */
+    --signal-deep: #6E4FA8;
+    --signal-glow: rgba(176, 128, 232, 0.22);
+    --crt-green: #6FE0A8;    /* the test-pattern bar accent */
+
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --body: 'Source Serif 4', Georgia, serif;
+    --mono: 'IBM Plex Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection { background: var(--signal); color: var(--bg); }
+
+  /* ---------- BROADCAST SCANLINE OVERLAY (subtle, page-wide) ---------- */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.18) 3px,
+        transparent 4px
+      );
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background:
+      radial-gradient(ellipse at 50% 50%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.55) 100%);
+  }
+
+  /* ---------- HERO — TV signal coming on ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 60%, var(--signal-glow) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 110%, rgba(199, 66, 31, 0.08) 0%, transparent 50%),
+      var(--bg);
+    z-index: 0;
+  }
+
+  /* ---------- STATION ID — broadcast bumper that flashes first ---------- */
+  .station-id {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    background: var(--bg-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    animation: stationOut 0.18s ease-out 1.95s forwards;
+  }
+
+  @keyframes stationOut {
+    0%   { opacity: 1; background: var(--bg-deep); }
+    35%  { opacity: 1; background: rgba(237, 229, 214, 0.92); }   /* the cut: brief overexposure */
+    55%  { opacity: 1; background: var(--bg-deep); }
+    100% { opacity: 0; visibility: hidden; }
+  }
+
+  .station-id-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.36em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: stationIn 0.45s ease-out 0.1s forwards;
+  }
+
+  .station-id-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    letter-spacing: 0.005em;
+    line-height: 1;
+    color: var(--ink);
+    text-shadow: 0 0 50px rgba(212, 166, 71, 0.22);
+    opacity: 0;
+    animation: stationIn 0.6s ease-out 0.18s forwards;
+  }
+
+  .station-id-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .station-id-rule {
+    width: 90px;
+    height: 1px;
+    background: var(--ember);
+    opacity: 0;
+    margin-top: 1.75rem;
+    animation: stationIn 0.45s ease-out 0.32s forwards;
+  }
+
+  @keyframes stationIn {
+    0%   { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Channel-tune static — appears, then dissolves */
+  .signal-static {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.85 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 280px 280px;
+    opacity: 0.85;
+    mix-blend-mode: screen;
+    animation: signalLock 2.4s steps(8, end) 2.1s forwards;
+  }
+
+  @keyframes signalLock {
+    0%   { opacity: 0.85; }
+    60%  { opacity: 0.55; }
+    85%  { opacity: 0.18; }
+    100% { opacity: 0; }
+  }
+
+  /* The horizontal hold — broadcast lines that snap into place */
+  .h-hold {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom,
+        transparent 0%,
+        rgba(176, 128, 232, 0.04) 48%,
+        rgba(176, 128, 232, 0.10) 50%,
+        rgba(176, 128, 232, 0.04) 52%,
+        transparent 100%);
+    transform: translateY(0);
+    animation: hHoldSnap 1.6s cubic-bezier(0.4, 0.05, 0.2, 1) 3.1s forwards;
+  }
+
+  @keyframes hHoldSnap {
+    0%   { transform: translateY(-30%); opacity: 0.9; }
+    40%  { transform: translateY(45%); opacity: 0.85; }
+    70%  { transform: translateY(-10%); opacity: 0.4; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+
+  /* Hero content */
+  .hero-content {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    max-width: 820px;
+    opacity: 0;
+    animation: signalReveal 1.8s ease-out 4.1s forwards;
+  }
+
+  @keyframes signalReveal {
+    0%   { opacity: 0; filter: blur(14px); transform: scale(0.985); }
+    60%  { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; filter: blur(0); transform: scale(1); }
+  }
+
+  .hero-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-mark::before {
+    content: "▬ ";
+    color: var(--ember);
+    margin-right: 0.4em;
+  }
+
+  .hero-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(3.2rem, 11vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 40px rgba(176, 128, 232, 0.08);
+  }
+
+  .hero-title .word {
+    display: inline-block;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--signal);
+    font-weight: 600;
+  }
+
+  .hero-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--signal), transparent);
+    margin: 2rem auto 1.75rem;
+    opacity: 0.7;
+  }
+
+  .hero-subtitle {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+    max-width: 28ch;
+    margin: 0 auto;
+  }
+
+  .hero-dateline {
+    margin-top: 3.5rem;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    opacity: 0.78;
+  }
+
+  .hero-dateline span {
+    color: var(--ember);
+  }
+
+  /* Test-pattern color bars — small, top-right */
+  .test-pattern {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 5;
+    display: flex;
+    gap: 2px;
+    opacity: 0;
+    animation: barsIn 1.2s ease-out 5.5s forwards;
+  }
+
+  @keyframes barsIn {
+    0%   { opacity: 0; transform: translateX(8px); }
+    100% { opacity: 0.8; transform: translateX(0); }
+  }
+
+  .test-pattern .bar {
+    width: 7px;
+    height: 24px;
+  }
+  .test-pattern .b1 { background: var(--ink-soft); }
+  .test-pattern .b2 { background: var(--gold); }
+  .test-pattern .b3 { background: var(--crt-green); }
+  .test-pattern .b4 { background: var(--signal); }
+  .test-pattern .b5 { background: var(--ember); }
+  .test-pattern .b6 { background: rgba(255,255,255,0.15); }
+
+  .test-pattern-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-left: 8px;
+    line-height: 24px;
+    opacity: 0.6;
+  }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    opacity: 0;
+    animation: signalReveal 1.4s ease-out 5.9s forwards;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--signal);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .scroll-cue::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--signal), transparent);
+    margin: 12px auto 0;
+  }
+
+  /* ---------- PREMISE BAND — full-bleed dark statement ---------- */
+  .premise {
+    background: var(--bg-deep);
+    padding: 7rem 2rem;
+    position: relative;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .premise-mark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .premise-statement {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 32ch;
+    margin: 0 auto;
+  }
+
+  .premise-statement em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .premise-statement .pulse {
+    color: var(--signal);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  section + section {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--gold-deep);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .section-mark .roman {
+    color: var(--ember);
+    margin-right: 1.2em;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  h2 .pulse {
+    color: var(--signal);
+    font-style: normal;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+    max-width: 60ch;
+  }
+
+  p em {
+    font-style: italic;
+    color: var(--gold);
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.04em;
+  }
+
+  p strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  p .pulse {
+    color: var(--signal);
+    font-weight: 500;
+  }
+
+  /* ---------- THE FOUR DECLARATIONS — 2x2 grid ---------- */
+  .declarations {
+    background: var(--bg-deep);
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .declarations-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .declarations-mark {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+  }
+
+  .declarations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+
+  .declaration {
+    padding: 3rem 2.25rem;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .declaration .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--ember);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .declaration h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .declaration h3 em {
+    font-style: italic;
+    color: var(--signal);
+    font-weight: 600;
+  }
+
+  /* ---------- THE COSMOGONY — Voros cone ---------- */
+  .cosmogony-figure {
+    margin: 3rem auto 2.5rem;
+    max-width: 720px;
+  }
+
+  .cosmogony-figure svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cosmogony-caption {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+
+  /* Pull quote */
+  .pull {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+    line-height: 1.35;
+    color: var(--gold);
+    text-align: center;
+    margin: 2.5rem auto;
+    max-width: 40ch;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pull-attribution {
+    display: block;
+    margin-top: 0.85rem;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  /* ---------- THE LANGUAGE — flips ladder ---------- */
+  .flips {
+    margin: 2.5rem 0 2rem;
+    padding: 0;
+  }
+
+  .flip {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--display);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    line-height: 1.3;
+  }
+
+  .flip:last-child { border-bottom: none; }
+
+  .flip .from {
+    text-align: right;
+    color: var(--ink-soft);
+    font-style: italic;
+    opacity: 0.75;
+    text-decoration: line-through;
+    text-decoration-color: rgba(199, 66, 31, 0.45);
+    text-decoration-thickness: 1px;
+  }
+
+  .flip .arrow {
+    font-family: var(--mono);
+    color: var(--ember);
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+  }
+
+  .flip .to {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .flip .to em {
+    color: var(--signal);
+    font-style: italic;
+  }
+
+  /* ---------- THE INVERSION — anti-Shark-Tank panel ---------- */
+  .inversion {
+    margin: 3rem 0 1rem;
+    padding: 2.5rem 2.25rem;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--ember);
+    background: linear-gradient(135deg, rgba(199, 66, 31, 0.04), transparent 60%);
+  }
+
+  .inversion-mark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .inversion h3 {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .inversion h3 em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .inversion p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin-bottom: 0;
+    max-width: none;
+  }
+
+  /* ---------- EPISODE SAMPLE ---------- */
+  .episode-card {
+    margin: 2.5rem 0 2rem;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .episode-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.5rem 0 0.5rem;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    color: var(--gold-deep);
+    text-transform: uppercase;
+  }
+
+  .episode-meta .ep-num {
+    color: var(--ember);
+  }
+
+  .episode-meta .ep-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .episode-card h3 {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3.4vw, 2.1rem);
+    line-height: 1.15;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .episode-card .logline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+
+  .episode-card .body {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  /* ---------- SHAPE — season/episode grid ---------- */
+  .shape-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin: 2rem 0 2.5rem;
+  }
+
+  .season-card {
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--rule);
+    padding: 0.9rem 0.6rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(176, 128, 232, 0.02);
+    transition: border-color 0.4s ease, background 0.4s ease;
+  }
+
+  .season-card:hover {
+    border-color: var(--signal);
+    background: rgba(176, 128, 232, 0.06);
+  }
+
+  .season-card .num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: var(--signal);
+    line-height: 1;
+  }
+
+  .season-card .yr {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    color: var(--ember);
+    text-transform: uppercase;
+  }
+
+  .season-card .label {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    line-height: 1.35;
+    opacity: 0.85;
+  }
+
+  /* ---------- LINEAGE block ---------- */
+  .lineage {
+    margin: 2.5rem 0 1rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lineage .year {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 2.2rem;
+    color: var(--ember);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .lineage .source {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    color: var(--gold-deep);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .lineage h4 {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+    color: var(--ink);
+    margin-bottom: 0.85rem;
+    font-weight: 500;
+  }
+
+  .lineage p {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ---------- ECOSYSTEM ROOMS — links to other mediums ---------- */
+  .rooms {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin: 2.5rem 0 1rem;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .room {
+    background: var(--bg);
+    padding: 1.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.4s ease;
+    display: block;
+  }
+
+  .room:hover {
+    background: rgba(176, 128, 232, 0.04);
+  }
+
+  .room .role {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.26em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .room .name {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.15;
+  }
+
+  .room .name em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .room .blurb {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- DEDICATION ---------- */
+  .dedication {
+    text-align: center;
+    padding: 7rem 2rem;
+    border-top: 1px solid var(--rule);
+    background:
+      radial-gradient(ellipse at 50% 50%, var(--signal-glow) 0%, transparent 65%);
+  }
+
+  .dedication-mark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .dedication-text {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 28ch;
+    margin: 0 auto;
+  }
+
+  .dedication-text em {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .dedication-text .pulse {
+    color: var(--signal);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    background: var(--bg-deep);
+  }
+
+  .footer-mark {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-tagline {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--signal);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    line-height: 2;
+    opacity: 0.7;
+  }
+
+  .footer-meta a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.3s ease;
+  }
+
+  .footer-meta a:hover {
+    color: var(--signal);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    body { font-size: 16.5px; }
+    main { padding: 4rem 1.5rem 3rem; }
+    section { padding: 3.5rem 0; }
+    .declarations-grid { grid-template-columns: 1fr; }
+    .declaration { padding: 2.25rem 1.5rem; }
+    .premise { padding: 5rem 1.5rem; }
+    .declarations { padding: 4rem 1.5rem; }
+    .dedication { padding: 5rem 1.5rem; }
+    .shape-grid { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .season-card { padding: 0.6rem 0.3rem; }
+    .season-card .num { font-size: 1.2rem; }
+    .season-card .label { font-size: 8.5px; }
+    .rooms { grid-template-columns: 1fr; }
+    .flip {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      text-align: left;
+    }
+    .flip .from { text-align: left; }
+    .flip .arrow { display: none; }
+    .test-pattern { top: 1rem; right: 1rem; }
+    .test-pattern .bar { width: 5px; height: 18px; }
+    .test-pattern-label { display: none; }
+  }
+
+  /* ---------- REDUCED MOTION ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .signal-static { display: none; }
+    .h-hold { display: none; }
+    .station-id { display: none; }
+    .hero-content,
+    .scroll-cue,
+    .test-pattern { opacity: 1; animation: none; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO — broadcast signal coming on -->
+<header class="hero" role="banner">
+
+  <!-- Station ID bumper — flashes first, then cuts to the tune-in -->
+  <div class="station-id" aria-hidden="true">
+    <div class="station-id-mark">▬ A Storylivingry Channel</div>
+    <div class="station-id-title">TV That <em>Matters</em></div>
+    <div class="station-id-rule"></div>
+  </div>
+
+  <div class="signal-static" aria-hidden="true"></div>
+  <div class="h-hold" aria-hidden="true"></div>
+
+  <div class="test-pattern" aria-hidden="true">
+    <span class="bar b1"></span>
+    <span class="bar b2"></span>
+    <span class="bar b3"></span>
+    <span class="bar b4"></span>
+    <span class="bar b5"></span>
+    <span class="bar b6"></span>
+    <span class="test-pattern-label">CH&nbsp;01 · LIVE</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-mark">Broadcasting At the Speed of Life</div>
+    <h1 class="hero-title"><span class="word">Unbreakable</span> <em>Spirit</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-subtitle">A Civil Rights Moviement for the Soul, documented as it's being lived.</p>
+    <div class="hero-dateline">
+      Five-Season Docuseries &nbsp;·&nbsp; Target Premiere <span>NJ&nbsp;·&nbsp;2028</span>
+    </div>
+  </div>
+
+  <a href="#opening" class="scroll-cue" aria-label="Scroll to begin">Tune In</a>
+</header>
+
+<!-- THE PREMISE — full-bleed dark statement -->
+<section class="premise" id="opening" aria-label="The premise">
+  <div class="premise-mark">The Premise</div>
+  <p class="premise-statement">
+    Not a documentary <em>about</em> a movement.<br />
+    The movement, <span class="pulse">documented as it's being lived</span>.
+  </p>
+</section>
+
+<!-- THE FOUR DECLARATIONS -->
+<section class="declarations" aria-label="The four declarations">
+  <div class="declarations-inner">
+    <div class="declarations-mark">The Four Declarations</div>
+    <div class="declarations-grid">
+      <div class="declaration">
+        <span class="num">01</span>
+        <h3>Co-creation <em>is healing</em></h3>
+      </div>
+      <div class="declaration">
+        <span class="num">02</span>
+        <h3>Unity <em>in neurodiversity</em></h3>
+      </div>
+      <div class="declaration">
+        <span class="num">03</span>
+        <h3>Passion is the <em>gateway drug</em></h3>
+      </div>
+      <div class="declaration">
+        <span class="num">04</span>
+        <h3>Step into <em>the preposterous</em></h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- I — WHAT THIS IS -->
+  <section class="reveal" aria-labelledby="s1">
+    <span class="section-mark"><span class="roman">I</span>What this is</span>
+    <h2 id="s1">A genre-busting hybrid of <em>fact, fiction, and fairytale</em>.</h2>
+
+    <p>For thirty years one of us lived inside the diagnosis. Five involuntary admissions. The pills. The lockdown wards. The framing of every honest signal as pathology. And on the other side of that last hospitalization — not a recovery story. A <span class="pulse">paradigm complaint</span>.</p>
+
+    <p>So we're making the show that doesn't yet exist. <em>Unbreakable Spirit</em> is reality television as cultural intervention — a five-season transmedium docuseries that follows the Moviement in real time. Not a documentary <em>about</em> us. The Moviement itself, documented as it builds.</p>
+
+    <p>Cameras roll while the work gets done. The audience watches, participates, co-creates, and funds. The line between drama and reality dissolves on purpose. By the time the season ends, the world it's reporting on is the world the show helped bring into being. <strong>Broadcast as cause and effect at the same time.</strong></p>
+  </section>
+
+  <!-- II — THE COSMOGONY -->
+  <section class="reveal" aria-labelledby="s2">
+    <span class="section-mark"><span class="roman">II</span>The Cosmogony of Possibility</span>
+    <h2 id="s2">Past plausible. Past possible. <em>Into the preposterous.</em></h2>
+
+    <p>The futurist Joseph Voros drew a cone of futures. <em>Probable</em> sits in the center — the trends already in motion. <em>Plausible</em> is the wider ring of what current knowledge says could happen. <em>Possible</em> is wider still. And outside the dotted line — the territory most planning ignores — sits <span class="pulse">the preposterous</span>. The futures we've been told won't happen. Can't happen. Aren't allowed to happen.</p>
+
+    <div class="cosmogony-figure" aria-hidden="true">
+      <svg viewBox="0 0 740 360" xmlns="http://www.w3.org/2000/svg">
+        <!-- Now point -->
+        <circle cx="60" cy="180" r="3" fill="#D4A647"/>
+        <text x="60" y="208" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#C7BCA8">NOW</text>
+
+        <!-- Time axis (subtle, no label — direction is implicit) -->
+        <line x1="60" y1="180" x2="540" y2="180" stroke="#C7BCA8" stroke-width="0.7" opacity="0.35"/>
+
+        <!-- The cones, nested, opening rightward -->
+        <!-- Preposterous (outermost, dashed, ember) -->
+        <path d="M 60 180 L 540 30 L 540 330 Z" fill="none" stroke="#C7421F" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.85"/>
+        <!-- Possible -->
+        <path d="M 60 180 L 540 75 L 540 285 Z" fill="rgba(212,166,71,0.04)" stroke="#A8842F" stroke-width="0.8" opacity="0.7"/>
+        <!-- Plausible -->
+        <path d="M 60 180 L 540 110 L 540 250 Z" fill="rgba(212,166,71,0.06)" stroke="#A8842F" stroke-width="0.8" opacity="0.85"/>
+        <!-- Probable (innermost, solid signal) -->
+        <path d="M 60 180 L 540 150 L 540 210 Z" fill="rgba(176,128,232,0.18)" stroke="#B080E8" stroke-width="1" opacity="0.95"/>
+
+        <!-- Tick marks bridging cone edges to labels -->
+        <line x1="540" y1="30" x2="556" y2="30" stroke="#C7421F" stroke-width="0.8" opacity="0.6"/>
+        <line x1="540" y1="75" x2="556" y2="75" stroke="#A8842F" stroke-width="0.8" opacity="0.5"/>
+        <line x1="540" y1="110" x2="556" y2="110" stroke="#A8842F" stroke-width="0.8" opacity="0.5"/>
+        <line x1="540" y1="150" x2="556" y2="150" stroke="#B080E8" stroke-width="0.8" opacity="0.6"/>
+
+        <!-- Labels at right edge -->
+        <text x="562" y="34" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="2" fill="#C7421F">PREPOSTEROUS</text>
+        <text x="562" y="50" font-family="Source Serif 4, serif" font-style="italic" font-size="10" fill="#C7BCA8">won't ever happen</text>
+
+        <text x="562" y="79" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="2" fill="#A8842F">POSSIBLE</text>
+        <text x="562" y="95" font-family="Source Serif 4, serif" font-style="italic" font-size="10" fill="#C7BCA8">might happen</text>
+
+        <text x="562" y="114" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="2" fill="#A8842F">PLAUSIBLE</text>
+        <text x="562" y="130" font-family="Source Serif 4, serif" font-style="italic" font-size="10" fill="#C7BCA8">could happen</text>
+
+        <text x="562" y="154" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="2" fill="#B080E8">PROBABLE</text>
+        <text x="562" y="170" font-family="Source Serif 4, serif" font-style="italic" font-size="10" fill="#C7BCA8">already in motion</text>
+
+        <!-- Arrow pointing into the preposterous -->
+        <path d="M 380 60 Q 410 35 430 22" stroke="#C7421F" stroke-width="1.4" fill="none"/>
+        <polygon points="430,22 422,28 426,18" fill="#C7421F"/>
+        <text x="270" y="50" font-family="Cormorant Garamond, serif" font-style="italic" font-size="16" fill="#EDE5D6">step here</text>
+      </svg>
+    </div>
+    <div class="cosmogony-caption">Adapted from Voros, 2003</div>
+
+    <p class="pull">
+      "Some of the most important changes in human society have arisen from things thought to be totally preposterous. So let us cheerfully explore that vast territory of preposterousness beyond the boundary."
+      <span class="pull-attribution">Joseph Voros</span>
+    </p>
+
+    <p>The whole show is a wager that the territory most strategy refuses to enter is exactly where the next mental health paradigm lives. Not <em>improvements to the system</em>. Not <em>better access to the system</em>. <span class="pulse">A different system entirely</span>, brought into being on camera, in real time, by the people the old system was designed to manage.</p>
+  </section>
+
+  <!-- III — THE REALITY -->
+  <section class="reveal" aria-labelledby="s3">
+    <span class="section-mark"><span class="roman">III</span>The Reality</span>
+    <h2 id="s3">A personal story, <em>in service to a collective journey.</em></h2>
+
+    <p>The show opens on one man. His name is Bret. The diagnosis was bipolar — five involuntary admissions, a decade of pharmacology, a paradigm that called every honest signal a symptom. The protagonist is <em>still healing</em>, and the show refuses to lie about that. Not the made-the-meeting-and-took-the-meds kind of healing. The kind that's actually true for anyone who's been through the wards more than once: <span class="pulse">on camera, in motion, ongoing</span>. That honesty is half of why the cameras work.</p>
+
+    <p>He dogfoods every modality he can find. Coaches, somatic practitioners, plant medicine elders, peer-support workers, neurologists, blockchain founders, theater directors, monks. Each of them gets put on his own body first, on camera, before he'll ever recommend it. The ones carrying real medicine get invited — episode by episode, by name, in person — into the <em>Mental Health Reformation Consortium</em>. The table fills slowly. The table fills.</p>
+
+    <p>Meanwhile the world keeps issuing its verdicts. <em>Too much. Too ungrounded. Too preposterous. Can't be done. Won't ever happen.</em> He's a believer — that's the only label that ever fit. The believing is the engine. The instruction the show keeps coming back to is the one he gave himself in 2012, walking out of the last hospitalization: <em>follow your crazy.</em></p>
+
+    <p>And then the gifts begin. A coach offers his time. A musician offers her property. A philanthropist clears a calendar. A producer sends an unsolicited script. Synchronicities the writers' room couldn't script if it was getting paid to. The longer the cameras roll, the more the show starts depicting the thing it's claiming — that <span class="pulse">the Universe conspires for ideas whose time has come</span> — and the footage piles up as the proof.</p>
+
+    <p>By the back half of season one the frame cracks open. What started as one man's quest is now an ensemble. Every yes is a co-star. Every co-star has a story the show makes room for. The audience watches a chorus assemble in real time — a Spartacus moment in slow motion, where one by one, people stand up and say <em>I'm Unbreakable Spirit, too</em>, until the answer to <em>who is the protagonist</em> is just <em>all of us, by now.</em></p>
+
+    <p class="pull">
+      We are the medicine.
+      <span class="pull-attribution">The Show's Realization</span>
+    </p>
+
+    <p>Not the system. Not the prescriber. Not the protocol. <strong>The room</strong> is the medicine. The show is the room. The audience is in the room. That's the move that's been waiting fifteen years for the technology to catch up — and the technology, finally, is here.</p>
+  </section>
+
+  <!-- IV — THE INVERSION (Anti-Shark-Tank) -->
+  <section class="reveal" aria-labelledby="s4">
+    <span class="section-mark"><span class="roman">IV</span>The Inversion</span>
+    <h2 id="s4">Reality TV with the camera <em>turned around</em>.</h2>
+
+    <p>The center of every season is a recurring set piece we're calling the <em>Future Live-Aid</em>. Where Shark Tank has founders pitching billionaires, we have it the other way:</p>
+
+    <div class="inversion">
+      <span class="inversion-mark">▬ The Future Live-Aid</span>
+      <h3>Philanthropists pitch <em>us</em> on how their resources can best serve the mission.</h3>
+      <p>One person at the table represents the Moviement. Across from them, in rotation: family-office principals, foundation directors, sovereign-wealth fund stewards, billionaires whose names you'd recognize. They get a clock. They get a single question to answer: <em>given what your money can do, where would it serve the soul of the country best?</em> The audience watches them think out loud. The whole frame of charity flips — from gatekeeper to applicant — and the country watches that flip happen, episode after episode, until the new posture is normal.</p>
+    </div>
+
+    <p>It is the most cinematic single unit in the architecture. It is also the funding mechanism. The show pays for the Moviement by <em>being</em> the Moviement's economy on camera.</p>
+  </section>
+
+  <!-- V — A SAMPLE EPISODE -->
+  <section class="reveal" aria-labelledby="s5">
+    <span class="section-mark"><span class="roman">V</span>What An Episode Feels Like</span>
+    <h2 id="s5">A taste, not a treatment.</h2>
+
+    <p>Not promising the full slate of 130 hours. Promising the cold open and the texture. Here's what one episode looks like at the level of voice and shape:</p>
+
+    <div class="episode-card">
+      <div class="episode-meta">
+        <span class="ep-num">SEASON I · EP 01</span>
+        <span class="ep-divider"></span>
+        <span>The Underdogma</span>
+      </div>
+      <h3>The Underdogma</h3>
+      <p class="logline">Austin, Texas. The protagonist sits across from a coach who has made a career of impossible things. The coach has a question. The protagonist has thirty years of evidence and no script.</p>
+      <p class="body">The episode opens on the four-minute mile. Black-and-white footage. Roger Bannister. The doctors who said the heart would burst. Cut to a kitchen in Austin. Coffee. A coach named Shannon Graham, whose business is the impossible. He asks one question, and the rest of the hour is the protagonist trying to answer it on camera, and failing, and trying again. By the end of the hour, three things have happened: the protagonist has a strategy he didn't have at breakfast, the coach has put real money into the Moviement, and the audience has watched a believable human being decide — out loud, on television — to attempt something that two days ago he would have told you was preposterous. <em>That's the show.</em> Twenty-five more times in season one. Different city, different catalyst, same shape.</p>
+    </div>
+  </section>
+
+  <!-- VI — THE SHAPE -->
+  <section class="reveal" aria-labelledby="s6">
+    <span class="section-mark"><span class="roman">VI</span>The Shape</span>
+    <h2 id="s6">Five seasons. Twenty-six hours each. <em>One arc.</em></h2>
+
+    <p>Each season tightens the spiral. Season one establishes the people, the language, and the country we're working in. By season five we're broadcasting <em>from inside</em> the infrastructure the earlier seasons built.</p>
+
+    <div class="shape-grid">
+      <div class="season-card">
+        <div>
+          <div class="num">I</div>
+          <div class="yr">2028</div>
+        </div>
+        <div class="label">Roadtrip<br/>The Underdogma</div>
+      </div>
+      <div class="season-card">
+        <div>
+          <div class="num">II</div>
+          <div class="yr">2029</div>
+        </div>
+        <div class="label">The Coalition<br/>Forms</div>
+      </div>
+      <div class="season-card">
+        <div>
+          <div class="num">III</div>
+          <div class="yr">2030</div>
+        </div>
+        <div class="label">First Studios<br/>Built</div>
+      </div>
+      <div class="season-card">
+        <div>
+          <div class="num">IV</div>
+          <div class="yr">2031</div>
+        </div>
+        <div class="label">Homecoming<br/>Concert</div>
+      </div>
+      <div class="season-card">
+        <div>
+          <div class="num">V</div>
+          <div class="yr">2032</div>
+        </div>
+        <div class="label">Global<br/>Simulcast</div>
+      </div>
+    </div>
+
+    <p>Target premiere: New Jersey, 2028. Target broadcast partner: <em>Netflix Fort Monmouth</em> — the billion-dollar production complex opening on the former Army base in Bret's home county. The show that documents the rebuilding of the American mental-health paradigm, premiering from the place where the country reorients its old infrastructure into its new one. The <span class="pulse">pun is the strategy</span>.</p>
+  </section>
+
+  <!-- VII — LINEAGE -->
+  <section class="reveal" aria-labelledby="s7">
+    <span class="section-mark"><span class="roman">VII</span>The Lineage</span>
+    <h2 id="s7">This title <em>has been waiting</em> fifteen years.</h2>
+
+    <p>The name is not new. It belongs to a book.</p>
+
+    <div class="lineage">
+      <div class="year">2011</div>
+      <div class="source">New York Times Bestseller</div>
+      <h4>Unbreakable Spirit: Rising Above the Impossible</h4>
+      <p>Compiled by Lisa Nichols. Forty contributors — Lisa's "ambassadors of fortitude." Bret's chapter is called <em>Hero's Journey in Transforming Perceived Mental Illness Into A Blessing</em>. Years One through Eleven of the same project that became this docuseries. The book was the first medium. The show is the next one. Same title because it's the same work.</p>
+    </div>
+
+    <p>What was a chapter in 2011 became an essay in 2023, becomes a docuseries in 2028, becomes the spine of a country's reformation in the years after. Same name on every layer. <em>That is what a moviement actually looks like</em> — a single unbroken arc, working through every medium in turn until the medium runs out and the next one shows up.</p>
+  </section>
+
+  <!-- VIII — THE OTHER ROOMS -->
+  <section class="reveal" aria-labelledby="s8">
+    <span class="section-mark"><span class="roman">VIII</span>The Other Rooms</span>
+    <h2 id="s8">Unbreakable Spirit is one medium. <em>The moviement has many.</em></h2>
+
+    <p>The docuseries documents the moviement, but it isn't <em>the</em> moviement. The moviement lives across mediums — theatrical, technological, cinematic, governance, business, architectural — and the broadcast medium is the part that ties them together for an audience large enough to matter. Each of the rooms below is its own discipline, with its own page when it's ready.</p>
+
+    <div class="rooms">
+      <a href="#" class="room">
+        <div class="role">Theatrical Medium</div>
+        <div class="name">A <em>One Mind</em> Show</div>
+        <div class="blurb">The live, embodied, immersive frame. Campus by campus. Stand-up, sermon, spectacle.</div>
+      </a>
+      <a href="#" class="room">
+        <div class="role">Technology Medium</div>
+        <div class="name"><em>DePsy</em></div>
+        <div class="blurb">Decentralized data sovereignty for lived experience. The people whose lives built the knowledge own it.</div>
+      </a>
+      <a href="#" class="room">
+        <div class="role">Cinematic Medium</div>
+        <div class="name">The Hospital That <em>Laughter Built</em></div>
+        <div class="blurb">A feature film whose production budget builds Patch Adams' long-unfinished hospital in West Virginia.</div>
+      </a>
+      <a href="#" class="room">
+        <div class="role">Governance Medium</div>
+        <div class="name">The <em>Consortium</em></div>
+        <div class="blurb">A multi-sector coalition for mental health reformation. Public-private partnership as instrument.</div>
+      </a>
+      <a href="#" class="room">
+        <div class="role">Business Medium</div>
+        <div class="name"><em>Social Effects</em></div>
+        <div class="blurb">The production engine. Regenerative filmmaking. Sets become permanent community infrastructure.</div>
+      </a>
+      <a href="#" class="room">
+        <div class="role">Mother Brand</div>
+        <div class="name"><em>Storylivingry</em> Studio</div>
+        <div class="blurb">The studio that produces all of it. Making a livingry — Buckminster Fuller's word, opposite of weaponry.</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- IX — A NOTE ON THE BROADCAST SKIN -->
+  <section class="reveal" aria-labelledby="s9">
+    <span class="section-mark"><span class="roman">IX</span>A Note on the Skin</span>
+    <h2 id="s9">The rest of the moviement <em>wears black tie</em>. This room <em>wears stage colors</em>.</h2>
+
+    <p>The other rooms in the ecosystem dress for institutional trust — dark, gold, theatrical, prophetic. This page deliberately does not. <em>Unbreakable Spirit</em> is the medium that has to play in living rooms, on phones, on the screen people fall asleep to at the end of a long Tuesday. So it wears the colors of broadcast — the lavender of the original 2011 banner, the static, the test pattern, the channel-tune-in. <span class="pulse">The frame is dignified. The skin is approachable.</span> Both on purpose.</p>
+  </section>
+
+</main>
+
+<!-- DEDICATION -->
+<section class="dedication reveal">
+  <div class="dedication-mark">For the ones still inside</div>
+  <p class="dedication-text">For everyone who was ever told their <em>signal</em> was sickness — and kept <span class="pulse">broadcasting anyway</span>.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-mark"><em>Unbreakable Spirit</em></div>
+  <div class="footer-tagline">▬ TV That Matters</div>
+  <div class="footer-meta">
+    The Broadcast Medium of A Civil Rights Moviement for the Soul<br />
+    A Storylivingry Studio Production<br />
+    <a href="mailto:bret@bretwarshawsky.com">bret@bretwarshawsky.com</a>
+  </div>
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
